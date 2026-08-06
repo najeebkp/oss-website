@@ -996,8 +996,10 @@
         padding-bottom: 60px;
       }
 
+      /* basis kept below the brand's rendered width so the row never
+         self-wraps before the 1180px breakpoint takes over */
       .footer-brand {
-        flex: 1 1 520px;
+        flex: 1 1 480px;
         min-width: 0;
       }
 
@@ -1177,8 +1179,26 @@
         .res-grid {
           grid-template-columns: repeat(2, 1fr);
         }
+        /* tablet + mobile footer: brand stacked above the columns, which
+           span the full width, split evenly, each left-aligned */
+        .footer-main {
+          flex-direction: column;
+          gap: 40px;
+        }
+        /* the column direction makes flex-basis a height — reset it */
+        .footer-brand {
+          flex: 0 0 auto;
+        }
+        .footer-cols {
+          width: 100%;
+          justify-content: space-evenly;
+          gap: 24px;
+        }
         .footer-col {
-          width: 190px;
+          flex: 1 1 0;
+          width: auto;
+          min-width: 0;
+          text-align: left;
         }
       }
 
@@ -1222,25 +1242,6 @@
         .sec {
           padding: 72px 0 88px;
         }
-        .footer-brand{
-          flex: 1 1 100px;
-        }
-        .footer-main {
-          flex-direction: column;
-          gap: 40px;
-        }
-        /* columns span the full width, evenly split, each left-aligned */
-        .footer-cols {
-          width: 100%;
-          justify-content: space-evenly;
-          gap: 24px;
-        }
-        .footer-col {
-          flex: 1 1 0;
-          width: auto;
-          min-width: 0;
-          text-align: left;
-        }
       }
 
       @media (max-width: 720px) {
@@ -1267,10 +1268,6 @@
         }
         .hero-ctas {
           gap: 12px;
-        }
-        .footer-brand {
-          flex: 1 1 200px;
-          min-width: 0;
         }
         .modal {
           padding: 30px 22px;
